@@ -4,7 +4,7 @@ classdef kinematic_models
     % Discretized continuous-time state space models
     %   1) discretized CWNA
     %   2) discretized CWPA
-    % Discrete-time using state space models
+    % Discrete-time state space models
     %   3) DWNA
     %   4) DWPA 
     %
@@ -22,18 +22,18 @@ classdef kinematic_models
     end
 
     methods
-
-        function obj = kinematic_models(value)
-            obj.samplingTime  = value; 
+        function obj = kinematic_models(samplingTime)
+            obj.samplingTime  = samplingTime; 
         end 
 
         function [xk, F, Q] = CWNA(obj, xkm1, qtild)
-            % discretized continuous white noise acceleration (CWNA) model 
+            % Discretized continuous white noise acceleration (CWNA) model 
             % or second-order kinematic model (double integrator).
             if ~iscolumn(xkm1) || length(xkm1) ~= 2 
                 error(['incorrect state vector dimension;' ...
                     ' try column vector of size 2x1'])
             end 
+            
             T  = obj.samplingTime; 
             F  = [1 T; 0 1];                       % state transition matrix 
             Q  = [T^3/3 T^2/2; T^2/2 T]*qtild;     % noise covariance matrix          
@@ -41,12 +41,13 @@ classdef kinematic_models
         end
 
         function [xk, F, Q] = CWPA(obj, xkm1, qtild)
-            % discretized continuous Wiener process acceleration (CWPA) model
+            % Discretized continuous Wiener process acceleration (CWPA) model
             % or white noise jerk model.
             if ~iscolumn(xkm1) || length(xkm1) ~= 3 
                 error(['incorrect state vector dimension;' ...
                     ' try column vector of size 3x1'])
             end 
+
             T  = obj.samplingTime; 
             F  = [1 T T^2/2; 0 1 T; 0 0 1];        % state transition matrix 
             Q  = [T^5/20 T^4/8 T^3/6;
@@ -57,12 +58,13 @@ classdef kinematic_models
         end
 
         function [xk, F, Q] = DWNA(obj, xkm1, sigma_v)
-            % discrete white noise acceleration (DWNA) model
+            % Discrete white noise acceleration (DWNA) model
             % or piecewise constant white acceleration model
             if ~iscolumn(xkm1) || length(xkm1) ~= 2 
                 error(['incorrect state vector dimension;' ...
                     ' try column vector of size 2x1'])
             end 
+
             T     = obj.samplingTime; 
             F     = [1 T; 0 1];               % state transition matrix 
             Gamma = [T^2/2; T];               % noise gain matrix
@@ -71,12 +73,13 @@ classdef kinematic_models
         end
 
         function [xk, F, Q] = DWPA(obj, xkm1, sigma_v)
-            % discrete Wiener process acceleration (DWPA) model,
+            % Discrete Wiener process acceleration (DWPA) model,
             % or piecewise constant Wiener process acceleration model 
             if ~iscolumn(xkm1) || length(xkm1) ~= 3 
                 error(['incorrect state vector dimension;' ...
                     ' try column vector of size 3x1'])
             end 
+
             T     = obj.samplingTime; 
             F     = [1 T T^2/2; 0 1 T; 0 0 1];      % state transition matrix 
             Gamma = [T^2/2; T; 1];                  % noise gain matrix
