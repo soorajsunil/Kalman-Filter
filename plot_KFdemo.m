@@ -8,6 +8,7 @@ Nz = size(zk,1);
 
 % plot properties 
 plt.save         = true; 
+plt.saveFormat   = 'bmp'; 
 plt.Units        = 'centimeters'; 
 plt.FontSize     = 10; 
 plt.MarkerSize   = 6; 
@@ -36,7 +37,7 @@ for kx = 1:Nx
     end 
 end 
 if plt.save
-    saveas(gca,fullfile('plots/', strcat(model,'state')),'epsc')
+    saveas(gca,fullfile('plots/', strcat(model,'state')),plt.saveFormat)
 end 
 
 figure(Units=plt.Units, Position=plt.Position,  Name='3 sigma bounds')
@@ -66,7 +67,7 @@ for kx = 1:Nx
     end 
 end 
 if plt.save
-    saveas(gca,fullfile('plots/', strcat(model,'covariance')),'epsc')
+    saveas(gca,fullfile('plots/', strcat(model,'covariance')),plt.saveFormat)
 end 
 
 figure(Units=plt.Units, Position=plt.Position,  Name='average NIS')
@@ -84,7 +85,7 @@ legend(lgnd, 'location', 'northeast');
 ylim([nis_bounds(1)-0.5 nis_bounds(2)+0.5])
 xlim([1 Nsamples])
 if plt.save
-    saveas(gca,fullfile('plots/', strcat(model,'nis')),'epsc')
+    saveas(gca,fullfile('plots/', strcat(model,'nis')),plt.saveFormat)
 end 
 
 figure(Units=plt.Units, Position=plt.Position,  Name='average NEES')
@@ -102,7 +103,7 @@ legend(lgnd, 'location', 'northeast');
 ylim([nees_bounds(1)-0.5 nees_bounds(2)+0.5])
 xlim([1 Nsamples])
 if plt.save
-    saveas(gca,fullfile('plots/', strcat(model,'nees')),'epsc')
+    saveas(gca,fullfile('plots/', strcat(model,'nees')),plt.saveFormat)
 end 
 
 clear lgnd xbound ybound kx bound y
