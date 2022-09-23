@@ -1,5 +1,4 @@
 function [xk, zk, x0_hat, P0] = two_point_differencing(model, xk, zk, Ts, R)
-
 % Two point differencing filter initialization for second-order
 % models [Section 5.5.3]
 %
@@ -10,7 +9,6 @@ function [xk, zk, x0_hat, P0] = two_point_differencing(model, xk, zk, Ts, R)
 % zk - first two measurement samples at k = 1 and 2
 % Ts - sampling period in secs
 % R  - noise covariance matrix
-
 
 switch upper(model)
     case {'CWNA', 'DWNA'}
@@ -25,8 +23,6 @@ end
 % remove the two-points from the true sytsem and measurement vectors 
 xk     = xk(:, 3:length(xk)); 
 zk     = zk(:, 3:length(zk)); 
-
-
 end
 
 function [x0_hat, P0] =  TPD(zk, Ts, R)

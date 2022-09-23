@@ -1,5 +1,6 @@
 function [xk_hat, Pk, nis] = kalman_filter(xkm1_hat, Pkm1, zk, F, Q, H, R)
 % Kalman filter [Section 5.2.4]
+
 % xk_hat - current estimate at time index k
 % Pk     - current covariance estimate
 % NIS    - normalized innovation error squared
@@ -30,15 +31,13 @@ end
 end
 
 function [xk_hat, Pk, nis] = KF(xkm1_hat, Pkm1, zk, F, Q, H, R)
-% Kalman filter one cycle [Section 5.2.4]
-
 % State and covariance prediction
 xpred  = F*xkm1_hat;    % predicted state
 Ppred  = F*Pkm1*F' + Q; % predicted covariance
 % Measurement prediction
-zk_hat = H*xpred;        % predicted measurement
-inov   = zk - zk_hat;    % residual/innovation
-S      = R + H*Ppred*H'; % innovation covariance
+zk_hat = H*xpred;             % predicted measurement
+inov   = zk - zk_hat;         % residual/innovation
+S      = R + H*Ppred*H';      % innovation covariance
 nis    = inov'*S^(-1)*inov;   % normalized innovation squared
 % State and covariance update
 G      = Ppred*H'/(S);     % kalman gain
