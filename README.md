@@ -1,4 +1,4 @@
-# Kalman filter 
+# Kalman Filter 
 Kalman filter of kinematic target tracking (constant velocity model [1] is assumed, here) 
 
 ### Tracking the state (position and velocity) using the Kalman filter
