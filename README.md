@@ -6,8 +6,8 @@ Kalman filter of kinematic target tracking (constant velocity model [1] is assum
 KFtracking.m
 ```
 <p align="center">
-<img src="plots/position.png" width="350" height="250"> 
-<img src="plots/velocity.png" width="350" height="250"> 
+<img src="plots/position.bmp" width="450" height="300"> 
+<img src="plots/velocity.bmp" width="450" height="300"> 
 </p>
 
 
