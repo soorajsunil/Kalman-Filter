@@ -4,7 +4,7 @@
 % https://scholar.google.ca/user=mX2uugYAAAAJ&hl=en
 % Date    : 10 May 2022
 % Reference:
-% [1]. Estimation with applications to tracking and navigation: theory
+% [1]. Estimation with applications to tracking and navigation: Theory
 % algorithms and software, Bar-Shalom, Yaakov and Li, X Rong and
 % Kirubarajan, Thiagalingam
 
@@ -14,8 +14,7 @@ clc; clear; close all;
 % Experiment parameters
 Nsamples = 100;       % number of samples
 dt       = 0.5;       % sampling period
-Nmonte   = 100;       % number of monte carlo runs
-x0       = [420; 5];  % intial true state
+x0       = [420; 5];  % initial true state
 sigma_v  = 1;         % process noise std. deviation
 sigma_w  = 1;         % measurement noise std. deviation
 
@@ -32,33 +31,32 @@ NIS   = zeros(1, Nsamples);       % normalized innovation squared (NIS)
 [x0hat, P0, xk, zk] = TPDintialization(xk, zk, R, dt);
 
 for k = 1:Nsamples
-    [xkhat(:,k), Pk(:,:,k), NIS(:,k)] = kalmanFilter(x0hat, P0, F, H, Q, R, zk(:,k)); % kalman filter
+    [xkhat(:,k), Pk(:,:,k), NIS(:,k)] = KalmanFilter(x0hat, P0, F, H, Q, R, zk(:,k)); % Kalman filter
     x0hat = xkhat(:,k); % update previous estimate
     P0    = Pk(:,:,k);  % update previous covariance
 end
 clear k P0 x0hat
 
 % Figures:
-figure(Name='Position')
-k = (1:1:Nsamples).*dt; % x axis (time)
-hold on;
+figure(Name='Position'); hold on;
+k = (1:1:Nsamples).*dt; % plot x-axis 
 plot(k, xk(1,:), 'k-', k, xkhat(1,:), 'r--', 'Linewidth',2)
 xlabel('Time (s)'); ylabel('Position (m)');
-legend({'True','KF Estimate'})
+legend({'True','KF Estimate'}); hold off; 
 
-figure(Name='Velocity')
-hold on;
+figure(Name='Velocity'); hold on;
 plot(k, xk(2,:), 'k-', k, xkhat(2,:), 'r--', 'Linewidth',2)
-xlabel('Time (s)'); ylabel('Velocity (m/s)');
-legend({'True','KF Estimate'})
+xlabel('Time (s)');
+ylabel('Velocity (m/s)');
+legend({'True','KF Estimate'}); hold off; 
 
 % END OF MAIN ... %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [x0_hat,P0,xk,zk] = TPDintialization(xk,zk,R,T)
-% two point differencing using first two measurements
+% two-point differencing using the first two measurements
 x0_hat = [zk(1); (zk(2)-zk(1))/T];
 P0     = [1 -1/T; -1/T 2/T^2].*(R)^2;
-% remove the two-points from the true sytsem and measurement vectors
+% remove the two points from the true system and measurement vectors
 xk = xk(:,3:length(xk));
 zk = zk(:,3:length(zk));
 end
@@ -79,7 +77,7 @@ for k = 2:Tk
 end
 end
 
-function [xkhat, Pk, NIS] = kalmanFilter(x0, P0, F, H, Q, R, zk)
+function [xkhat, Pk, NIS] = KalmanFilter(x0, P0, F, H, Q, R, zk)
 % State and covariance prediction
 xpred  = F*x0;                % predicted state
 Ppred  = F*P0*F' + Q;         % predicted covariance
