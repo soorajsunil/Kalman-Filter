@@ -39,16 +39,16 @@ clear k P0 x0hat
 
 % Figures:
 figure(Name='Position'); hold on;
-k = (1:1:Nsamples).*dt; % plot x-axis 
+k = (1:1:Nsamples).*dt; % plot x-axis
 plot(k, xk(1,:), 'k-', k, xkhat(1,:), 'r--', 'Linewidth',2)
 xlabel('Time (s)'); ylabel('Position (m)');
-legend({'True','KF Estimate'}); hold off; 
+legend({'True','KF Estimate'}); hold off;
 
 figure(Name='Velocity'); hold on;
 plot(k, xk(2,:), 'k-', k, xkhat(2,:), 'r--', 'Linewidth',2)
 xlabel('Time (s)');
 ylabel('Velocity (m/s)');
-legend({'True','KF Estimate'}); hold off; 
+legend({'True','KF Estimate'}); hold off;
 
 % END OF MAIN ... %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
