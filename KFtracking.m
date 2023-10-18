@@ -9,7 +9,8 @@
 % Kirubarajan, Thiagalingam
 
 % START OF MAIN ... %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clc; clear; close all;
+clc; clear; 
+close all;
 
 % Experiment parameters
 Nsamples = 100;       % number of samples
