@@ -1,6 +1,6 @@
 # Kalman Filter Target Tracking with Simulated Distance Measurements (Constant Velocity Model)
 
-This repository provides a Matlab implementation of a Kalman Filter-based target tracking system using simulated distance measurements. The target's motion is assumed to follow a constant velocity model. The Kalman Filter is a recursive algorithm that estimates the state (position and velocity) of a dynamic target by predicting its future state based on noisy measurements. The Kalman filter is initialized using a two-point initialization method [1].
+This repository provides a simple Matlab implementation of a Kalman Filter-based target tracking system using simulated distance measurements. The target's motion is assumed to follow a constant velocity model. The Kalman Filter is a recursive algorithm that estimates the state (position and velocity) of a dynamic target by predicting its future state based on noisy measurements. The Kalman filter is initialized using a two-point initialization method [1].
 
 Run the script:
 
