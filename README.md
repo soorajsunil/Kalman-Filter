@@ -1,9 +1,13 @@
-# Kalman filter target tracking simulation.
-- The position and velocity of a moving target are tracked using the Kalman filter when given noisy position measurements.
-- The Kalman filter is initialized using a two-point initialization method [1]
+# Kalman Filter Target Tracking with Simulated Distance Measurements (Constant Velocity Model)
+
+This repository provides a Matlab implementation of a Kalman Filter-based target tracking system using simulated distance measurements. The target's motion is assumed to follow a constant velocity model. The Kalman Filter is a recursive algorithm that estimates the state (position and velocity) of a dynamic target by predicting its future state based on noisy measurements. The Kalman filter is initialized using a two-point initialization method [1].
+
+Run the script:
+
 ```
 KFtracking.m
 ```
+To generate the following plots: 
 <p align="center">
 <img src="plots/position.bmp" width="450" height="300"> 
 <img src="plots/velocity.bmp" width="450" height="300"> 
