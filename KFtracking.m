@@ -1,9 +1,8 @@
 % Tracking the dynamic state (position and velocity) of a
-% discrete white noise acceleration (DWNA) model using the Kalman filter
-% Code by : SOORAJ SUNIL
-% https://scholar.google.ca/user=mX2uugYAAAAJ&hl=en
-% Date    : 10 May 2022
-% Reference:
+% constant velocity target using the Kalman filter.
+% Writer: SOORAJ SUNIL
+% Date: 10 May 2022
+% References:
 % [1]. Estimation with applications to tracking and navigation: Theory
 % algorithms and software, Bar-Shalom, Yaakov and Li, X Rong and
 % Kirubarajan, Thiagalingam
